@@ -1,1 +1,3 @@
 # SchoolPlanr
+
+Karakushi, Ruzicic, Jakob

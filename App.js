@@ -1,4 +1,3 @@
-// App.js
 import "./components/firebase";
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
