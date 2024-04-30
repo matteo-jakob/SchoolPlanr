@@ -7,7 +7,6 @@ import { firebase } from "../firebase";
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isTeacher, setIsTeacher] = useState(false);
 
   const handleLogin = async () => {
     try {
@@ -15,8 +14,8 @@ const LoginScreen = ({ navigation }) => {
         .auth()
         .signInWithEmailAndPassword(email, password);
       const user = response.user;
-      console.log("Login:", user);
-      navigation.navigate("Home", { username: email, isTeacher });
+      console.log("Successfull Login:", user);
+      navigation.navigate("Home", { username: email });
     } catch (error) {
       console.error("Error logging in:", error.message);
     }
@@ -28,24 +27,10 @@ const LoginScreen = ({ navigation }) => {
         .auth()
         .createUserWithEmailAndPassword(email, password);
       const user = response.user;
-      console.log("Register:", user);
-      navigation.navigate("Home", { username: email, isTeacher });
+      console.log("Successfull Register:", user);
+      navigation.navigate("Home", { username: email });
     } catch (error) {
       console.error("Error registering:", error.message);
-    }
-  };
-
-  const handleTeacherLogin = async () => {
-    try {
-      const response = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password);
-      const user = response.user;
-      console.log("Login:", user);
-      setIsTeacher(true);
-      navigation.navigate("Home", { username: email, isTeacher });
-    } catch (error) {
-      console.error("Error logging in:", error.message);
     }
   };
 
@@ -94,20 +79,6 @@ const LoginScreen = ({ navigation }) => {
           }
           title="Register"
           onPress={handleRegister}
-          buttonStyle={styles.button}
-        />
-        <Button
-          icon={
-            <Icon
-              name="sign-in"
-              type="font-awesome"
-              color="white"
-              size={20}
-              style={{ marginRight: 10 }}
-            />
-          }
-          title="Teacher Login "
-          onPress={handleTeacherLogin}
           buttonStyle={styles.button}
         />
       </View>
