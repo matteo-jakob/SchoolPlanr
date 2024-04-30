@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import firestore from "@react-native-firebase/firestore";
+import { firebase, firestore } from "../firebase";
 
 const StundenplanScreen = () => {
   const [schedule, setSchedule] = useState([]);
