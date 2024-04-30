@@ -18,8 +18,8 @@ const StundenplanScreen = () => {
     klasse: "",
   });
   const [sortBy, setSortBy] = useState("zeit"); // Default sorting by time
-  const [zeit, setZeit] = useState(""); // State for time input
-  const [dauer, setDauer] = useState(""); // State for duration input
+  const [zeit, setZeit] = useState("");
+  const [dauer, setDauer] = useState("");
 
   useEffect(() => {
     const unsubscribe = firestore
@@ -34,21 +34,22 @@ const StundenplanScreen = () => {
     return () => unsubscribe();
   }, []);
 
+  // ChatGPT
   const applyFilters = (item) => {
     return Object.keys(filters).every((key) => {
       if (filters[key] === "") return true; // Skip filtering if filter value is empty
       return item[key].toLowerCase().includes(filters[key].toLowerCase());
     });
   };
-
+  // ChatGPT
   const compareByTime = (a, b) => {
     return a.zeit - b.zeit;
   };
-
+  // ChatGPT
   const handleSortByChange = (sortBy) => {
     setSortBy(sortBy);
   };
-
+  // ChatGPT
   const handleFilterChange = (key, value) => {
     setFilters({
       ...filters,
@@ -61,8 +62,9 @@ const StundenplanScreen = () => {
   const addScheduleItem = (newItem) => {
     const isOverlap = schedule.some(
       (item) =>
-        item.lehrer === newItem.lehrer &&
-        ((item.zeit <= newItem.zeit && item.zeit + item.dauer > newItem.zeit) ||
+        item.lehrer === newItem.lehrer && // keine gleiche Lehrer erlauben
+        ((item.zeit <= newItem.zeit && // keine gleiche Zeit erlauben
+          item.zeit + item.dauer > newItem.zeit) || // und dauer einbeziehen
           (newItem.zeit <= item.zeit &&
             newItem.zeit + newItem.dauer > item.zeit))
     );
@@ -99,15 +101,7 @@ const StundenplanScreen = () => {
         />
       </View>
       <View style={styles.sortContainer}>
-        <Text>Sortieren nach Zeit:</Text>
-        <Button
-          title="Aufsteigend"
-          onPress={() => handleSortByChange("zeit")}
-        />
-        <Button
-          title="Absteigend"
-          onPress={() => handleSortByChange("-zeit")}
-        />
+        <Text>Sortiert nach Zeit</Text>
       </View>
       <View style={styles.container}>
         <ScrollView style={styles.scheduleContainer}>
@@ -160,8 +154,8 @@ const StundenplanScreen = () => {
               lehrer: filters.lehrer,
               klasse: filters.klasse,
               raum: "Raum",
-              zeit: parseInt(zeit), // Convert input to integer
-              dauer: parseInt(dauer), // Convert input to integer
+              zeit: parseInt(zeit),
+              dauer: parseInt(dauer),
             })
           }
         />
