@@ -7,7 +7,7 @@ import { firebase } from "../firebase";
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  //https://firebase.google.com/docs/auth/web/password-auth?hl=de
   const handleLogin = async () => {
     try {
       const response = await firebase
