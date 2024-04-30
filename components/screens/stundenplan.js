@@ -109,18 +109,20 @@ const StundenplanScreen = () => {
           onPress={() => handleSortByChange("-zeit")}
         />
       </View>
-      <ScrollView style={styles.scheduleContainer}>
-        {filteredSchedule.map((item, index) => (
-          <View key={index} style={styles.item}>
-            <Text style={styles.itemText}>{item.fach}</Text>
-            <Text style={styles.itemText}>{item.lehrer}</Text>
-            <Text style={styles.itemText}>{item.raum}</Text>
-            <Text style={styles.itemText}>{item.klasse}</Text>
-            <Text style={styles.itemText}>{item.zeit}</Text>
-            <Text style={styles.itemText}>{item.dauer}</Text>
-          </View>
-        ))}
-      </ScrollView>
+      <View style={styles.container}>
+        <ScrollView style={styles.scheduleContainer}>
+          {filteredSchedule.map((item, index) => (
+            <View key={index} style={styles.item}>
+              <Text style={styles.itemText}>{item.fach}</Text>
+              <Text style={styles.itemText}>{item.lehrer}</Text>
+              <Text style={styles.itemText}>{item.raum}</Text>
+              <Text style={styles.itemText}>{item.klasse}</Text>
+              <Text style={styles.itemText}>{item.zeit}</Text>
+              <Text style={styles.itemText}>{item.dauer}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
       <View style={styles.addEntryContainer}>
         <Text style={styles.addEntryHeader}>Neuer Stundenplaneintrag</Text>
         <TextInput
