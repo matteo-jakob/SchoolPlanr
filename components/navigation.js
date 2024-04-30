@@ -6,7 +6,6 @@ import LoginScreen from "./screens/login";
 import RaumbelegungScreen from "./screens/raumbelegung";
 import StundenplanLehrerScreen from "./screens/stundenplanLehrer";
 import StundenplanSuSScreen from "./screens/stundenplanSuS";
-import CreateStundenplanScreen from "./screens/createStundenplan";
 
 const Stack = createStackNavigator();
 
@@ -22,10 +21,6 @@ const AppNavigator = () => {
           component={StundenplanLehrerScreen}
         />
         <Stack.Screen name="StundenplanSuS" component={StundenplanSuSScreen} />
-        <Stack.Screen
-          name="CreateStundenplan"
-          component={CreateStundenplanScreen}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );
